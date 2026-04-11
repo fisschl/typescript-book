@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "@shikijs/vitepress-twoslash": "^4.0.2",
+    "@tsconfig/node24": "^24.0.4",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.8",
     "vitepress": "2.0.0-alpha.17"
   }
 }

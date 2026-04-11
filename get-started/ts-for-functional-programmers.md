@@ -387,7 +387,7 @@ function print<T>(dict: Show<T>, x: T): void {
 TypeScript 的模块系统与 Haskell 的模块系统有些相似，但更接近于 ES6 模块。每个文件可以是一个模块，使用 `import` 和 `export` 来控制可见性。
 
 
-```ts twoslash
+```ts
 // math.ts
 export function add(x: number, y: number): number {
   return x + y;
