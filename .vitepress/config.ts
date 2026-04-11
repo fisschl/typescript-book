@@ -5,6 +5,7 @@ import { createFileSystemTypesCache } from "@shikijs/vitepress-twoslash/cache-fs
 export default defineConfig({
   title: "TypeScript 手册",
   base: "/typescript-book/",
+  srcExclude: ["TypeScript-Website/**"],
   head: [
     [
       "link",
@@ -40,6 +41,23 @@ export default defineConfig({
             {
               text: "5 分钟了解 TypeScript 工具",
               link: "/tutorials/typescript-tooling-in-5-minutes",
+            },
+          ],
+        },
+        {
+          text: "手册",
+          items: [
+            {
+              text: "TypeScript 手册",
+              link: "/handbook-v2/the-handbook",
+            },
+            {
+              text: "基础",
+              link: "/handbook-v2/basics",
+            },
+            {
+              text: "日常类型",
+              link: "/handbook-v2/everyday-types",
             },
           ],
         },

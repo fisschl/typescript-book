@@ -48,11 +48,36 @@ const user: User = { username: "Hayes" };
 
 ## Translation Workflow
 
-1. Read source file from `TypeScript-Website/packages/documentation/copy/en/get-started/`
-2. Create translation in `get-started/` with filename: lowercase, hyphens (match source naming)
-3. Update `.vitepress/config.ts` sidebar with correct order
-4. Verify rendering in browser after each change
-5. Save screenshots to `.vitepress/cache/` (not project root) to avoid accidental commits
+All translation work follows this 4-step process:
+
+### 1. Explore
+- Locate source file in `TypeScript-Website/packages/documentation/copy/en/`
+- Check sidebar order in `generateDocsNavigationPerLanguage.js`
+- Review file for: code blocks with @errors/@noErrors, images, special formatting
+
+### 2. Translate
+- Create file with lowercase + hyphens naming
+- Keep frontmatter minimal (title only)
+- Preserve all code blocks exactly (use `ts twoslash` where appropriate)
+- Add spaces around `_italic_` and `**bold**` markers when adjacent to Chinese
+- Use standard technical terms:
+  - `emit` → "生成" (not "发射")
+  - `opt-in` → "渐进式"
+  - `downleveling` → "降级"
+  - `reified` → "具化"
+  - `nominal` → "标称"
+
+### 3. Review
+- Check for formatting issues (italics/bold spacing)
+- Verify technical term translations
+- Ensure code blocks match source
+- Check image paths use relative format
+
+### 4. Browser Test
+- Update `.vitepress/config.ts` sidebar
+- Verify page loads without errors
+- Check code block rendering (especially Twoslash)
+- Save screenshots to `.vitepress/cache/`
 
 ## File Naming
 

@@ -151,6 +151,6 @@ TypeScript 与 JavaScript 共享语法和运行时行为，所以你学习的任
   - [Microsoft 的 JavaScript 资源](https://developer.microsoft.com/javascript/) 或
   - [Mozilla Web 文档上的 JavaScript 指南](https://developer.mozilla.org/docs/Web/JavaScript/Guide)
 
-- 继续阅读 [面向 JavaScript 程序员的 TypeScript](/docs/handbook/typescript-in-5-minutes.html)
-- 从头到尾阅读完整的[手册](/docs/handbook/intro.html)
-- 探索 [Playground 示例](/play#show-examples)
+- 继续阅读 [面向 JavaScript 程序员的 TypeScript](./ts-for-js-programmers.html)
+- 从头到尾阅读完整的[手册](../handbook-v2/the-handbook.html)
+- 探索 [Playground 示例](https://www.typescriptlang.org/play#show-examples)

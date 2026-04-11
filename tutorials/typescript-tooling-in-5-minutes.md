@@ -12,7 +12,7 @@ title: 5 分钟了解 TypeScript 工具
 - 安装 TypeScript 的 Visual Studio 插件
 
 Visual Studio 2017 和 Visual Studio 2015 Update 3 默认包含 TypeScript 语言支持，但不包含 TypeScript 编译器 `tsc`。
-如果你没有随 Visual Studio 一起安装 TypeScript，你仍然可以[下载它](/download)。
+如果你没有随 Visual Studio 一起安装 TypeScript，你仍然可以[下载它](https://www.typescriptlang.org/download)。
 
 对于 npm 用户：
 

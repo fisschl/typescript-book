@@ -403,5 +403,5 @@ console.log(add(1, 2));
 
 现在你已经了解了 TypeScript 的类型系统与 Haskell 的不同之处，你可以：
 
-- 阅读完整的[手册](/docs/handbook/intro.html)
-- 探索 [Playground 示例](/play#show-examples)
+- 阅读完整的[手册](../handbook-v2/the-handbook.html)
+- 探索 [Playground 示例](https://www.typescriptlang.org/play#show-examples)

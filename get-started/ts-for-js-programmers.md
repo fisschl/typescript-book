@@ -63,7 +63,7 @@ const user: User = {
 如果你提供的对象与你提供的接口不匹配，TypeScript 会警告你：
 
 ```ts twoslash
-// @errors: 2322
+// @errors: 2322 2353
 interface User {
   name: string;
   id: number;
@@ -114,9 +114,9 @@ function getAdminUser(): User {
 }
 ```
 
-JavaScript 中已经有一组可用的基本类型：`boolean`、`bigint`、`null`、`number`、`string`、`symbol` 和 `undefined`，你可以在接口中使用这些类型。TypeScript 在此基础上扩展了更多类型，例如 `any`（允许任何值）、[`unknown`](/play#example/unknown-and-never)（确保使用此类型的人声明类型是什么）、[`never`](/play#example/unknown-and-never)（这种类型不可能发生）和 `void`（返回 `undefined` 或没有返回值的函数）。
+JavaScript 中已经有一组可用的基本类型：`boolean`、`bigint`、`null`、`number`、`string`、`symbol` 和 `undefined`，你可以在接口中使用这些类型。TypeScript 在此基础上扩展了更多类型，例如 `any`（允许任何值）、[`unknown`](https://www.typescriptlang.org/play#example/unknown-and-never)（确保使用此类型的人声明类型是什么）、[`never`](https://www.typescriptlang.org/play#example/unknown-and-never)（这种类型不可能发生）和 `void`（返回 `undefined` 或没有返回值的函数）。
 
-你会看到有两种构建类型的语法：[接口和类型](/play/?e=83#example/types-vs-interfaces)。你应该优先使用 `interface`。在需要特定功能时使用 `type`。
+你会看到有两种构建类型的语法：[接口和类型](https://www.typescriptlang.org/play/?e=83#example/types-vs-interfaces)。你应该优先使用 `interface`。在需要特定功能时使用 `type`。
 
 ## 组合类型
 
@@ -132,7 +132,7 @@ type MyBool = true | false;
 
 _注意：_ 如果你将鼠标悬停在 `MyBool` 上，你会看到它被归类为 `boolean`。这是结构类型系统的一个特性。更多内容见下文。
 
-联合类型的一个常见用例是描述值允许的一组 `string` 或 `number` [字面量](/docs/handbook/2/everyday-types.html#literal-types)：
+联合类型的一个常见用例是描述值允许的一组 `string` 或 `number` [字面量](../handbook-v2/everyday-types.html#字面量类型)：
 
 ```ts twoslash
 type WindowStates = "open" | "closed" | "minimized";
@@ -281,5 +281,5 @@ logPoint(newVPoint); // 输出 "13, 56"
 
 这是对日常 TypeScript 中使用的语法和工具的简要概述。从这里开始，你可以：
 
-- 从头到尾阅读完整的[手册](/docs/handbook/intro.html)
-- 探索 [Playground 示例](/play#show-examples)
+- 从头到尾阅读完整的[手册](../handbook-v2/the-handbook.html)
+- 探索 [Playground 示例](https://www.typescriptlang.org/play#show-examples)
