@@ -108,6 +108,14 @@ export default defineConfig({
                 },
               ],
             },
+            {
+              text: "类",
+              link: "/handbook-v2/classes",
+            },
+            {
+              text: "模块",
+              link: "/handbook-v2/modules",
+            },
           ],
         },
       ],
