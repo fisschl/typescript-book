@@ -71,6 +71,43 @@ export default defineConfig({
               text: "对象类型",
               link: "/handbook-v2/object-types",
             },
+            {
+              text: "类型操作",
+              items: [
+                {
+                  text: "从类型创建类型",
+                  link: "/handbook-v2/type-manipulation/creating-types-from-types",
+                },
+                {
+                  text: "泛型",
+                  link: "/handbook-v2/type-manipulation/generics",
+                },
+                {
+                  text: "keyof 类型运算符",
+                  link: "/handbook-v2/type-manipulation/keyof-type-operator",
+                },
+                {
+                  text: "typeof 类型运算符",
+                  link: "/handbook-v2/type-manipulation/typeof-type-operator",
+                },
+                {
+                  text: "索引访问类型",
+                  link: "/handbook-v2/type-manipulation/indexed-access-types",
+                },
+                {
+                  text: "条件类型",
+                  link: "/handbook-v2/type-manipulation/conditional-types",
+                },
+                {
+                  text: "映射类型",
+                  link: "/handbook-v2/type-manipulation/mapped-types",
+                },
+                {
+                  text: "模板字面量类型",
+                  link: "/handbook-v2/type-manipulation/template-literal-types",
+                },
+              ],
+            },
           ],
         },
       ],
