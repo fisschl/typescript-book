@@ -45,11 +45,11 @@ title: TypeScript 手册
 
 ## 开始使用
 
-在开始阅读 [基础](./basics.html) 之前，我们建议你阅读以下介绍性页面之一。这些介绍旨在突出 TypeScript 与你喜欢的编程语言之间的关键异同，并澄清这些语言特有的常见误解。
+在开始阅读 [基础](/handbook-v2/basics) 之前，我们建议你阅读以下介绍性页面之一。这些介绍旨在突出 TypeScript 与你喜欢的编程语言之间的关键异同，并澄清这些语言特有的常见误解。
 
-- [面向新程序员的 TypeScript](../get-started/ts-for-the-new-programmer.html)
-- [面向 JavaScript 程序员的 TypeScript](../get-started/ts-for-js-programmers.html)
-- [面向 Java/C# 程序员的 TypeScript](../get-started/ts-for-oopers.html)
-- [面向函数式程序员的 TypeScript](../get-started/ts-for-functional-programmers.html)
+- [面向新程序员的 TypeScript](/get-started/ts-for-the-new-programmer)
+- [面向 JavaScript 程序员的 TypeScript](/get-started/ts-for-js-programmers)
+- [面向 Java/C# 程序员的 TypeScript](/get-started/ts-for-oopers)
+- [面向函数式程序员的 TypeScript](/get-started/ts-for-functional-programmers)
 
-否则，直接跳转到 [基础](./basics.html)。
+否则，直接跳转到 [基础](/handbook-v2/basics)。

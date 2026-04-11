@@ -6,14 +6,84 @@ This file provides guidance to Qoder (qoder.com) when working with code in this 
 
 **Windows Compatibility**: Never use `2>/dev/null` or any redirection to `nul` in commands. On Windows, this creates actual files named `nul` instead of suppressing output.
 
+**No Shell-based Batch Text Replacement**: Never use `sed`, `powershell -replace`, or other shell commands to batch replace text content in files. Shell-based regex replacements can corrupt file encoding (especially UTF-8/Chinese characters) and lack context awareness. Instead:
+1. Use `Grep` to find all matching instances
+2. Review each match's context
+3. Use the `Edit` tool to replace each instance individually with full context awareness
+4. This ensures encoding safety and semantic correctness
+
 ## Development Commands
 
 ```bash
+pnpm run dev      # Start development server on port 5173
 pnpm run build    # Build for production
 pnpm run preview  # Preview production build
 ```
 
-**Note**: Do not run `pnpm run dev`. The development server is already running in another terminal.
+### Development Server Workflow
+
+When testing changes in the browser:
+
+1. Check if port 5173 is in use: `netstat -ano | findstr ":5173"` (Windows)
+2. If occupied, kill the process: `taskkill //PID <pid> //F`
+3. Start the development server: `pnpm run dev`
+4. Wait for the server to be ready on `http://localhost:5173/typescript-book/`
+5. Use the browser-agent to open and test the page
+6. Kill the server when done using `KillBash`
+
+**Important**: Always use port 5173 (default). If the port is in use, kill the existing process first rather than letting VitePress pick a different port.
+
+### Known Issues
+
+- **Node.js 25 localStorage warning**: You may see `Warning: --localstorage-file was provided without a valid path`. This is a harmless warning from Node.js 25's experimental localStorage feature. It does not affect the dev server.
+- **VitePress cache issues**: If a page shows incorrect content (e.g., basics page showing handbook content), clear the cache with `rm -rf .vitepress/cache` and restart the dev server.
+
+## Link Conventions
+
+### Internal Links
+
+All internal links MUST use absolute paths starting with `/` (VitePress will auto-prepend the base `/typescript-book/`):
+
+```markdown
+✅ Correct: [手册](/handbook-v2/the-handbook)
+❌ Wrong:   [手册](../handbook-v2/the-handbook.html)
+❌ Wrong:   [手册](/typescript-book/handbook-v2/the-handbook)  <!-- Don't include base -->
+```
+
+Rules:
+- Start with `/` (root-relative)
+- No `.html` extension (VitePress handles this)
+- No base path prefix (VitePress auto-adds it)
+- Anchor links work: `/handbook-v2/everyday-types#字面量类型`
+
+### External Links
+
+All external links MUST use full `https://` URLs:
+
+```markdown
+✅ Correct: [Playground](https://www.typescriptlang.org/play)
+❌ Wrong:   [Playground](/play)
+```
+
+### Links to Non-existent Pages
+
+If a source file links to a page that hasn't been translated yet, either:
+- Remove the link and keep just the text
+- Link to the English version with full URL
+
+## Browser Testing
+
+When testing pages in the browser:
+
+1. **Check page title** - Verify the Chinese title appears correctly
+2. **Check content** - Verify the page shows the correct translated content (not cached content from another page)
+3. **Check Twoslash** - Code blocks with `ts twoslash` should show error annotations
+4. **Test navigation** - Click sidebar links and internal page links
+5. **Check console** - No JavaScript errors should appear
+
+**Cache debugging tip**: If content appears wrong, try:
+1. Hard refresh (Ctrl+Shift+R)
+2. Clear `.vitepress/cache` and restart dev server
 
 ## Project Structure
 

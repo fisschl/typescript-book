@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 开始学习
-      link: /title-page
+      link: /get-started/ts-for-the-new-programmer
     - theme: alt
       text: 在 GitHub 上查看
       link: https://github.com/fisschl/typescript-book

@@ -59,6 +59,18 @@ export default defineConfig({
               text: "日常类型",
               link: "/handbook-v2/everyday-types",
             },
+            {
+              text: "类型收窄",
+              link: "/handbook-v2/narrowing",
+            },
+            {
+              text: "深入函数",
+              link: "/handbook-v2/more-on-functions",
+            },
+            {
+              text: "对象类型",
+              link: "/handbook-v2/object-types",
+            },
           ],
         },
       ],

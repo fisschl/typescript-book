@@ -132,7 +132,7 @@ type MyBool = true | false;
 
 _注意：_ 如果你将鼠标悬停在 `MyBool` 上，你会看到它被归类为 `boolean`。这是结构类型系统的一个特性。更多内容见下文。
 
-联合类型的一个常见用例是描述值允许的一组 `string` 或 `number` [字面量](../handbook-v2/everyday-types.html#字面量类型)：
+联合类型的一个常见用例是描述值允许的一组 `string` 或 `number` [字面量](/handbook-v2/everyday-types#字面量类型)：
 
 ```ts twoslash
 type WindowStates = "open" | "closed" | "minimized";
@@ -281,5 +281,5 @@ logPoint(newVPoint); // 输出 "13, 56"
 
 这是对日常 TypeScript 中使用的语法和工具的简要概述。从这里开始，你可以：
 
-- 从头到尾阅读完整的[手册](../handbook-v2/the-handbook.html)
+- 从头到尾阅读完整的[手册](/handbook-v2/the-handbook)
 - 探索 [Playground 示例](https://www.typescriptlang.org/play#show-examples)
