@@ -1,0 +1,8 @@
+dist
+node_modules
+.env
+.env.production
+.DS_Store
+.idea
+.vitepress/dist
+.vitepress/cache

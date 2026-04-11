@@ -1,0 +1,14 @@
+{
+  "name": "typescript-book",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "@shikijs/vitepress-twoslash": "^4.0.2",
+    "vitepress": "2.0.0-alpha.17"
+  }
+}
