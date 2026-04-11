@@ -118,6 +118,27 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: "参考",
+          items: [
+            {
+              text: "工具类型",
+              link: "/reference/utility-types",
+            },
+            {
+              text: "装饰器",
+              link: "/reference/decorators",
+            },
+            {
+              text: "声明合并",
+              link: "/reference/declaration-merging",
+            },
+            {
+              text: "枚举",
+              link: "/reference/enums",
+            },
+          ],
+        },
       ],
     },
   },
