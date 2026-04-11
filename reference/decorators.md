@@ -439,9 +439,7 @@ class BugReport {
 然后我们可以使用以下函数声明来定义 `@required` 和 `@validate` 装饰器：
 
 <!-- prettier-ignore -->
-```ts twoslash
-// @experimentalDecorators
-// @emitDecoratorMetadata
+```ts
 import "reflect-metadata";
 const requiredMetadataKey = Symbol("required");
 
@@ -512,10 +510,7 @@ tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata
 我们可以在以下示例中看到这一点：
 
 <!-- prettier-ignore -->
-```ts twoslash
-// @emitDecoratorMetadata
-// @experimentalDecorators
-// @strictPropertyInitialization: false
+```ts
 import "reflect-metadata";
 
 class Point {

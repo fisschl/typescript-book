@@ -10,7 +10,6 @@ title: keyof 类型运算符
 ```ts twoslash
 type Point = { x: number; y: number };
 type P = keyof Point;
-//   ^?
 ```
 
 如果该类型具有 `string` 或 `number` 索引签名，`keyof` 将返回这些类型：
@@ -18,11 +17,9 @@ type P = keyof Point;
 ```ts twoslash
 type Arrayish = { [n: number]: unknown };
 type A = keyof Arrayish;
-//   ^?
 
 type Mapish = { [k: string]: boolean };
 type M = keyof Mapish;
-//   ^?
 ```
 
 注意，在这个例子中，`M` 是 `string | number`——这是因为 JavaScript 对象键总是会被强制转换为字符串，所以 `obj[0]` 始终与 `obj["0"]` 相同。

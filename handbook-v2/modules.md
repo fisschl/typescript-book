@@ -107,7 +107,6 @@ import { pi, phi, absolute } from "./maths.js";
 
 console.log(pi);
 const absPhi = absolute(phi);
-//    ^?
 ```
 
 ### 额外的导入语法
@@ -122,7 +121,6 @@ export var pi = 3.14;
 import { pi as π } from "./maths.js";
 
 console.log(π);
-//          ^?
 ```
 
 你可以将上述语法混合到一个 `import` 中：
@@ -136,10 +134,8 @@ export default class RandomNumberGenerator {}
 import RandomNumberGenerator, { pi as π } from "./maths.js";
 
 RandomNumberGenerator;
-// ^?
 
 console.log(π);
-//          ^?
 ```
 
 你可以使用 `* as name` 将所有导出的对象放入一个命名空间：
@@ -160,7 +156,6 @@ import * as math from "./maths.js";
 
 console.log(math.pi);
 const positivePhi = math.absolute(math.phi);
-//    ^?
 ```
 
 你可以通过 `import "./file"` 导入文件而 _不_ 将任何变量包含到当前模块中：
@@ -295,7 +290,6 @@ module.exports = {
 // ---cut---
 const maths = require("./maths");
 maths.pi;
-//    ^?
 ```
 
 或者你可以使用 JavaScript 中的解构功能稍微简化一下：
@@ -319,7 +313,6 @@ module.exports = {
 // ---cut---
 const { squareTwo } = require("./maths");
 squareTwo;
-// ^?
 ```
 
 ### CommonJS 和 ES 模块的互操作
@@ -388,6 +381,7 @@ export const twoPi = valueOfPi * 2;
 ```ts twoslash
 // @showEmit
 // @module: umd
+// @moduleResolution: node
 // @noErrors
 import { valueOfPi } from "./constants.js";
 

@@ -92,12 +92,10 @@ function fn(ctor: CallOrConstruct) {
   // 传递 `number` 类型的参数给 `ctor` 会匹配
   // `CallOrConstruct` 接口中的第一个定义。
   console.log(ctor(10));
-              // ^?
 
   // 类似地，传递 `string` 类型的参数给 `ctor` 会匹配
   // `CallOrConstruct` 接口中的第二个定义。
   console.log(new ctor("10"));
-                  // ^?
 }
 
 fn(Date);
@@ -595,7 +593,7 @@ const admins = db.filterUsers(function (this: User) {
 这种模式在回调式 API 中很常见，通常由另一个对象控制什么时候调用你的函数。注意，你需要用 `function` 而不是箭头函数来获得这个行为：
 
 ```ts twoslash
-// @errors: 7041 7017
+// @errors: 7041 7017 2532
 interface User {
   id: number;
   admin: boolean;
@@ -772,7 +770,7 @@ const args = [8, 5] as const;
 const angle = Math.atan2(...args);
 ```
 
-使用剩余参数时，如果目标是较老的运行环境，可能需要开启 [`downlevelIteration`](/tsconfig#downlevelIteration)。
+使用剩余参数时，如果目标是较老的运行环境，可能需要开启 [`downlevelIteration`](https://www.typescriptlang.org/tsconfig#downlevelIteration)。
 
 <!-- TODO link to downlevel iteration -->
 

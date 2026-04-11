@@ -59,7 +59,6 @@ function identity<Type>(arg: Type): Type {
 }
 // ---cut---
 let output = identity<string>("myString");
-//       ^?
 ```
 
 在这里，我们显式地将 `Type` 设置为 `string`，作为函数调用的参数之一，使用 `<>` 而不是 `()` 包裹参数来表示。
@@ -72,7 +71,6 @@ function identity<Type>(arg: Type): Type {
 }
 // ---cut---
 let output = identity("myString");
-//       ^?
 ```
 
 注意我们不需要显式地在尖括号（`<>`）中传递类型；编译器只需查看值 `"myString"`，并将 `Type` 设置为其类型。
@@ -245,7 +243,7 @@ console.log(stringNumeric.add(stringNumeric.zeroValue, "test"));
 
 与接口一样，将类型参数放在类本身可以确保类的所有属性都使用相同的类型。
 
-正如我们在 [类的章节](/docs/handbook/2/classes.html) 中介绍的，类在其类型方面有两面：静态面和实例面。
+正如我们在 [类的章节](/handbook-v2/classes) 中介绍的，类在其类型方面有两面：静态面和实例面。
 泛型类只对其实例面而非静态面是泛型的，因此在使用类时，静态成员不能使用类的类型参数。
 
 ## 泛型约束
@@ -371,7 +369,7 @@ createInstance(Lion).keeper.nametag;
 createInstance(Bee).keeper.hasMask;
 ```
 
-这个模式用于支持 [mixins](/docs/handbook/mixins.html) 设计模式。
+这个模式用于支持 [mixins](https://www.typescriptlang.org/docs/handbook/mixins.html) 设计模式。
 
 ## 泛型参数默认值
 
@@ -408,10 +406,8 @@ declare function create<T extends HTMLElement = HTMLDivElement, U extends HTMLEl
 ): Container<T, U>;
 
 const div = create();
-//    ^?
 
 const p = create(new HTMLParagraphElement());
-//    ^?
 ```
 
 泛型参数默认值遵循以下规则：

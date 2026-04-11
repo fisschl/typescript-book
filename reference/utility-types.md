@@ -19,13 +19,10 @@ TypeScript 提供了几个工具类型来促进常见的类型转换。这些工
 
 ```ts twoslash
 type A = Awaited<Promise<string>>;
-//   ^?
 
 type B = Awaited<Promise<Promise<number>>>;
-//   ^?
 
 type C = Awaited<boolean | Promise<number>>;
-//   ^?
 ```
 
 ## `Partial<Type>`
@@ -148,7 +145,6 @@ const cats: Record<CatName, CatInfo> = {
 };
 
 cats.boris;
-// ^?
 ```
 
 ## `Pick<Type, Keys>`
@@ -179,7 +175,6 @@ const todo: TodoPreview = {
 };
 
 todo;
-// ^?
 ```
 
 ## `Omit<Type, Keys>`
@@ -212,7 +207,6 @@ const todo: TodoPreview = {
 };
 
 todo;
-// ^?
 
 type TodoInfo = Omit<Todo, "completed" | "createdAt">;
 
@@ -222,7 +216,6 @@ const todoInfo: TodoInfo = {
 };
 
 todoInfo;
-// ^?
 ```
 
 ## `Exclude<UnionType, ExcludedMembers>`
@@ -240,11 +233,8 @@ todoInfo;
 
 ```ts twoslash
 type T0 = Exclude<"a" | "b" | "c", "a">;
-//    ^?
 type T1 = Exclude<"a" | "b" | "c", "a" | "b">;
-//    ^?
 type T2 = Exclude<string | number | (() => void), Function>;
-//    ^?
 
 type Shape =
   | { kind: "circle"; radius: number }
@@ -252,7 +242,6 @@ type Shape =
   | { kind: "triangle"; x: number; y: number };
 
 type T3 = Exclude<Shape, { kind: "circle" }>
-//    ^?
 ```
 
 ## `Extract<Type, Union>`
@@ -270,9 +259,7 @@ type T3 = Exclude<Shape, { kind: "circle" }>
 
 ```ts twoslash
 type T0 = Extract<"a" | "b" | "c", "a" | "f">;
-//    ^?
 type T1 = Extract<string | number | (() => void), Function>;
-//    ^?
 
 type Shape =
   | { kind: "circle"; radius: number }
@@ -280,7 +267,6 @@ type Shape =
   | { kind: "triangle"; x: number; y: number };
 
 type T2 = Extract<Shape, { kind: "circle" }>
-//    ^?
 ```
 
 ## `NonNullable<Type>`
@@ -298,9 +284,7 @@ type T2 = Extract<Shape, { kind: "circle" }>
 
 ```ts twoslash
 type T0 = NonNullable<string | number | undefined>;
-//    ^?
 type T1 = NonNullable<string[] | null | undefined>;
-//    ^?
 ```
 
 ## `Parameters<Type>`
@@ -323,21 +307,13 @@ type T1 = NonNullable<string[] | null | undefined>;
 declare function f1(arg: { a: number; b: string }): void;
 
 type T0 = Parameters<() => string>;
-//    ^?
 type T1 = Parameters<(s: string) => void>;
-//    ^?
 type T2 = Parameters<<T>(arg: T) => T>;
-//    ^?
 type T3 = Parameters<typeof f1>;
-//    ^?
 type T4 = Parameters<any>;
-//    ^?
 type T5 = Parameters<never>;
-//    ^?
 type T6 = Parameters<string>;
-//    ^?
 type T7 = Parameters<Function>;
-//    ^?
 ```
 
 ## `ConstructorParameters<Type>`
@@ -357,21 +333,15 @@ type T7 = Parameters<Function>;
 // @errors: 2344
 // @strict: false
 type T0 = ConstructorParameters<ErrorConstructor>;
-//    ^?
 type T1 = ConstructorParameters<FunctionConstructor>;
-//    ^?
 type T2 = ConstructorParameters<RegExpConstructor>;
-//    ^?
 class C {
   constructor(a: number, b: string) {}
 }
 type T3 = ConstructorParameters<typeof C>;
-//    ^?
 type T4 = ConstructorParameters<any>;
-//    ^?
 
 type T5 = ConstructorParameters<Function>;
-//    ^?
 ```
 
 ## `ReturnType<Type>`
@@ -394,23 +364,14 @@ type T5 = ConstructorParameters<Function>;
 declare function f1(): { a: number; b: string };
 
 type T0 = ReturnType<() => string>;
-//    ^?
 type T1 = ReturnType<(s: string) => void>;
-//    ^?
 type T2 = ReturnType<<T>() => T>;
-//    ^?
 type T3 = ReturnType<<T extends U, U extends number[]>() => T>;
-//    ^?
 type T4 = ReturnType<typeof f1>;
-//    ^?
 type T5 = ReturnType<any>;
-//    ^?
 type T6 = ReturnType<never>;
-//    ^?
 type T7 = ReturnType<string>;
-//    ^?
 type T8 = ReturnType<Function>;
-//    ^?
 ```
 
 ## `InstanceType<Type>`
@@ -435,15 +396,10 @@ class C {
 }
 
 type T0 = InstanceType<typeof C>;
-//    ^?
 type T1 = InstanceType<any>;
-//    ^?
 type T2 = InstanceType<never>;
-//    ^?
 type T3 = InstanceType<string>;
-//    ^?
 type T4 = InstanceType<Function>;
-//    ^?
 ```
 
 ## `NoInfer<Type>`

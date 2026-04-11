@@ -7,7 +7,6 @@ title: 索引访问类型
 ```ts twoslash
 type Person = { age: number; name: string; alive: boolean };
 type Age = Person["age"];
-//   ^?
 ```
 
 索引类型本身也可以是一个类型，所以我们可以使用联合类型、`keyof` 或其他任意类型：
@@ -16,14 +15,11 @@ type Age = Person["age"];
 type Person = { age: number; name: string; alive: boolean };
 // ---cut---
 type I1 = Person["age" | "name"];
-//   ^?
 
 type I2 = Person[keyof Person];
-//   ^?
 
 type AliveOrName = "alive" | "name";
 type I3 = Person[AliveOrName];
-//   ^?
 ```
 
 如果你尝试索引一个不存在的属性，甚至会看到错误：
@@ -46,12 +42,9 @@ const MyArray = [
 ];
 
 type Person = typeof MyArray[number];
-//   ^?
 type Age = typeof MyArray[number]["age"];
-//   ^?
 // 或者
 type Age2 = Person["age"];
-//   ^?
 ```
 
 索引时只能使用类型，这意味着你不能使用 `const` 来创建一个变量引用：

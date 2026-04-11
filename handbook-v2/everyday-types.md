@@ -463,13 +463,11 @@ changingString = "Olá Mundo";
 // 因为 'changingString' 可以表示任何可能的字符串，这就是
 // TypeScript 在类型系统中描述它的方式
 changingString;
-// ^?
 
 const constantString = "Hello World";
 // 因为 'constantString' 只能表示 1 个可能的字符串，它
 // 有字面量类型表示
 constantString;
-// ^?
 ```
 
 就其本身而言，字面量类型并不是很有价值：

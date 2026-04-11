@@ -9,7 +9,6 @@ title: 对象类型
 
 ```ts twoslash
 function greet(person: { name: string; age: number }) {
-  //                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   return "Hello " + person.name;
 }
 ```
@@ -18,7 +17,6 @@ function greet(person: { name: string; age: number }) {
 
 ```ts twoslash
 interface Person {
-  //      ^^^^^^
   name: string;
   age: number;
 }
@@ -32,7 +30,6 @@ function greet(person: Person) {
 
 ```ts twoslash
 type Person = {
-  // ^^^^^^
   name: string;
   age: number;
 };
@@ -65,9 +62,7 @@ declare function getShape(): Shape;
 interface PaintOptions {
   shape: Shape;
   xPos?: number;
-  //  ^
   yPos?: number;
-  //  ^
 }
 
 function paintShape(opts: PaintOptions) {
@@ -85,7 +80,7 @@ paintShape({ shape, xPos: 100, yPos: 100 });
 我们可以选择提供其中任何一个，所以上面所有对 `paintShape` 的调用都是合法的。
 可选性实际上只表示：如果该属性 _确实_ 设置了，它必须有特定的类型。
 
-我们也可以读取这些属性——但在 [`strictNullChecks`](/tsconfig#strictNullChecks) 下，TypeScript 会告诉我们它们可能是 `undefined`。
+我们也可以读取这些属性——但在 [`strictNullChecks`](https://www.typescriptlang.org/tsconfig#strictNullChecks) 下，TypeScript 会告诉我们它们可能是 `undefined`。
 
 ```ts twoslash
 interface Shape {}
@@ -100,9 +95,7 @@ interface PaintOptions {
 // ---cut---
 function paintShape(opts: PaintOptions) {
   let xPos = opts.xPos;
-  //              ^?
   let yPos = opts.yPos;
-  //              ^?
   // ...
 }
 ```
@@ -123,9 +116,7 @@ interface PaintOptions {
 // ---cut---
 function paintShape(opts: PaintOptions) {
   let xPos = opts.xPos === undefined ? 0 : opts.xPos;
-  //  ^?
   let yPos = opts.yPos === undefined ? 0 : opts.yPos;
-  //  ^?
   // ...
 }
 ```
@@ -145,9 +136,7 @@ interface PaintOptions {
 // ---cut---
 function paintShape({ shape, xPos = 0, yPos = 0 }: PaintOptions) {
   console.log("x coordinate at", xPos);
-  //                             ^?
   console.log("y coordinate at", yPos);
-  //                             ^?
   // ...
 }
 ```
@@ -245,7 +234,7 @@ writablePerson.age++;
 console.log(readonlyPerson.age); // 输出 '43'
 ```
 
-使用 [映射修饰符](/docs/handbook/2/mapped-types.html#mapping-modifiers)，可以移除 `readonly` 属性。
+使用 [映射修饰符](/handbook-v2/type-manipulation/mapped-types#mapping-modifiers)，可以移除 `readonly` 属性。
 
 ### 索引签名
 
@@ -262,7 +251,6 @@ interface StringArray {
 
 const myArray: StringArray = getStringArray();
 const secondItem = myArray[1];
-//     ^?
 ```
 
 上面我们有一个带索引签名的 `StringArray` 接口。
@@ -340,7 +328,7 @@ myArray[2] = "Mallory";
 其中一个关键例子就是额外属性检查，它会在对象创建并赋值给对象类型时更严格地验证对象。
 
 ```ts twoslash
-// @errors: 2345 2739
+// @errors: 2345 2739 2561
 interface SquareConfig {
   color?: string;
   width?: number;
@@ -366,7 +354,7 @@ let mySquare = createSquare({ colour: "red", width: 100 });
 如果对象字面量包含"目标类型"没有的属性，你会收到错误：
 
 ```ts twoslash
-// @errors: 2345 2739
+// @errors: 2345 2739 2561
 interface SquareConfig {
   color?: string;
   width?: number;
@@ -386,7 +374,7 @@ let mySquare = createSquare({ colour: "red", width: 100 });
 最简单的方法就是使用类型断言：
 
 ```ts twoslash
-// @errors: 2345 2739
+// @errors: 2345 2739 2561
 interface SquareConfig {
   color?: string;
   width?: number;
@@ -485,7 +473,6 @@ interface BasicAddress {
 interface AddressWithUnit {
   name?: string;
   unit: string;
-//^^^^^^^^^^^^^
   street: string;
   city: string;
   country: string;
@@ -554,7 +541,7 @@ type ColorfulCircle = Colorful & Circle;
 这里，我们将 `Colorful` 和 `Circle` 交叉，产生了一个具有 `Colorful` _和_ `Circle` 所有成员的新类型。
 
 ```ts twoslash
-// @errors: 2345
+// @errors: 2345 2561
 interface Colorful {
   color: string;
 }
@@ -611,7 +598,6 @@ type Staff = Person1 & Person2
 
 declare const staffer: Staff;
 staffer.name;
-//       ^?
 ```
 
 在这个例子中，`Staff` 要求 `name` 属性同时是 `string` 和 `number`，这导致属性类型为 `never`。
@@ -724,11 +710,9 @@ interface StringBox {
 
 let boxA: Box<string> = { contents: "hello" };
 boxA.contents;
-//   ^?
 
 let boxB: StringBox = { contents: "world" };
 boxB.contents;
-//   ^?
 ```
 
 `Box` 是可复用的，因为 `Type` 可以替换为任何类型。这意味着当我们需要一个新类型的 box 时，根本不需要声明新的 `Box` 类型（当然，如果我们愿意也可以）。
@@ -746,7 +730,7 @@ interface Apple {
 type AppleBox = Box<Apple>;
 ```
 
-这也意味着我们可以通过使用 [泛型函数](/docs/handbook/2/functions.html#泛型函数) 来完全避免重载。
+这也意味着我们可以通过使用 [泛型函数](/handbook-v2/more-on-functions#泛型函数) 来完全避免重载。
 
 ```ts twoslash
 interface Box<Type> {
@@ -784,10 +768,8 @@ type OrNull<Type> = Type | null;
 type OneOrMany<Type> = Type | Type[];
 
 type OneOrManyOrNull<Type> = OrNull<OneOrMany<Type>>;
-//   ^?
 
 type OneOrManyOrNullStrings = OneOrManyOrNull<string>;
-//   ^?
 ```
 
 我们稍后会再回到类型别名的话题。
@@ -918,9 +900,7 @@ type StringNumberPair = [string, number];
 ```ts twoslash
 function doSomething(pair: [string, number]) {
   const a = pair[0];
-  //    ^?
   const b = pair[1];
-  //    ^?
   // ...
 }
 
@@ -945,10 +925,8 @@ function doSomething(stringHash: [string, number]) {
   const [inputString, hash] = stringHash;
 
   console.log(inputString);
-  //          ^?
 
   console.log(hash);
-  //          ^?
 }
 ```
 
@@ -980,10 +958,8 @@ type Either2dOr3d = [number, number, number?];
 
 function setCoordinate(coord: Either2dOr3d) {
   const [x, y, z] = coord;
-  //           ^?
 
   console.log(`Provided coordinates had ${coord.length} dimensions`);
-  //                                            ^?
 }
 ```
 
@@ -1011,7 +987,7 @@ const c: StringNumberBooleans = ["world", 3, true, false, true, false, true];
 
 为什么可选和剩余元素有用？
 好吧，它允许 TypeScript 将元组与参数列表对应。
-元组类型可以在 [剩余参数和参数](/docs/handbook/2/functions.html#剩余参数和参数) 中使用，因此以下内容：
+元组类型可以在 [剩余参数和参数](/handbook-v2/more-on-functions#剩余参数和参数) 中使用，因此以下内容：
 
 ```ts twoslash
 function readButtonInput(...args: [string, number, ...boolean[]]) {

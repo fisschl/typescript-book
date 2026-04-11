@@ -17,7 +17,6 @@ TypeScript 了解 JavaScript 语言，会在许多情况下为你生成类型。
 
 ```ts twoslash
 let helloWorld = "Hello World";
-//  ^?
 ```
 
 通过理解 JavaScript 的工作原理，TypeScript 可以构建一个接受 JavaScript 代码但具有类型的类型系统。这提供了一个类型系统，而无需在代码中添加额外字符来显式声明类型。这就是 TypeScript 知道上面示例中 `helloWorld` 是 `string` 的原因。
@@ -166,7 +165,6 @@ function getLength(obj: string | string[]) {
 function wrapInArray(obj: string | string[]) {
   if (typeof obj === "string") {
     return [obj];
-//          ^?
   }
   return obj;
 }

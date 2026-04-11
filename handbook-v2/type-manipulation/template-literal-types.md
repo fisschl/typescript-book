@@ -11,7 +11,6 @@ title: 模板字面量类型
 type World = "world";
 
 type Greeting = `hello ${World}`;
-//   ^?
 ```
 
 当在插值位置使用联合类型时，该类型是每个联合成员可能表示的每个字符串字面量的集合：
@@ -21,7 +20,6 @@ type EmailLocaleIDs = "welcome_email" | "email_heading";
 type FooterLocaleIDs = "footer_title" | "footer_sendoff";
 
 type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
-//   ^?
 ```
 
 对于模板字面量中的每个插值位置，联合类型会 _交叉相乘_：
@@ -34,7 +32,6 @@ type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
 type Lang = "en" | "ja" | "pt";
 
 type LocaleMessageIDs = `${Lang}_${AllLocaleIDs}`;
-//   ^?
 ```
 
 我们通常建议人们预先生成大型字符串联合类型，但这在较小的场景下很有用。
@@ -145,12 +142,10 @@ const person = makeWatchedObject({
 });
 
 person.on("firstNameChanged", newName => {
-    //                        ^?
     console.log(`new name is ${newName.toUpperCase()}`);
 });
 
 person.on("ageChanged", newAge => {
-    //                  ^?
     if (newAge < 0) {
         console.warn("warning! negative age");
     }
@@ -179,11 +174,9 @@ person.on("ageChanged", newAge => {
 ```ts twoslash
 type Greeting = "Hello, world"
 type ShoutyGreeting = Uppercase<Greeting>
-//   ^?
 
 type ASCIICacheKey<Str extends string> = `ID-${Uppercase<Str>}`
 type MainID = ASCIICacheKey<"my_app">
-//   ^?
 ```
 
 ### `Lowercase<StringType>`
@@ -195,11 +188,9 @@ type MainID = ASCIICacheKey<"my_app">
 ```ts twoslash
 type Greeting = "Hello, world"
 type QuietGreeting = Lowercase<Greeting>
-//   ^?
 
 type ASCIICacheKey<Str extends string> = `id-${Lowercase<Str>}`
 type MainID = ASCIICacheKey<"MY_APP">
-//   ^?
 ```
 
 ### `Capitalize<StringType>`
@@ -211,7 +202,6 @@ type MainID = ASCIICacheKey<"MY_APP">
 ```ts twoslash
 type LowercaseGreeting = "hello, world";
 type Greeting = Capitalize<LowercaseGreeting>;
-//   ^?
 ```
 
 ### `Uncapitalize<StringType>`
@@ -223,7 +213,6 @@ type Greeting = Capitalize<LowercaseGreeting>;
 ```ts twoslash
 type UppercaseGreeting = "HELLO WORLD";
 type UncomfortableGreeting = Uncapitalize<UppercaseGreeting>;
-//   ^?
 ```
 
 <details>

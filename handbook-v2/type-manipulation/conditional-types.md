@@ -15,10 +15,8 @@ interface Dog extends Animal {
 }
 
 type Example1 = Dog extends Animal ? number : string;
-//   ^?
 
 type Example2 = RegExp extends Animal ? number : string;
-//   ^?
 ```
 
 条件类型的形式看起来有点像 JavaScript 中的条件表达式（`condition ? trueExpression : falseExpression`）：
@@ -94,13 +92,10 @@ function createLabel<T extends number | string>(idOrName: T): NameOrId<T> {
 }
 
 let a = createLabel("typescript");
-//  ^?
 
 let b = createLabel(2.8);
-//  ^?
 
 let c = createLabel(Math.random() ? "hello" : 42);
-//  ^?
 ```
 
 ### 条件类型约束
@@ -126,7 +121,6 @@ interface Email {
 }
 
 type EmailMessageContents = MessageOf<Email>;
-//   ^?
 ```
 
 但是，如果我们希望 `MessageOf` 接受任何类型，并且在没有 `message` 属性时默认为类似 `never` 的东西呢？
@@ -144,10 +138,8 @@ interface Dog {
 }
 
 type EmailMessageContents = MessageOf<Email>;
-//   ^?
 
 type DogMessageContents = MessageOf<Dog>;
-//   ^?
 ```
 
 在 true 分支中，TypeScript 知道 `T` _将_ 有一个 `message` 属性。
@@ -159,11 +151,9 @@ type Flatten<T> = T extends any[] ? T[number] : T;
 
 // 提取元素类型。
 type Str = Flatten<string[]>;
-//   ^?
 
 // 保持类型不变。
 type Num = Flatten<number>;
-//   ^?
 ```
 
 当 `Flatten` 被赋予数组类型时，它使用带 `number` 的索引访问来提取 `string[]` 的元素类型。
@@ -193,13 +183,10 @@ type GetReturnType<Type> = Type extends (...args: never[]) => infer Return
   : never;
 
 type Num = GetReturnType<() => number>;
-//   ^?
 
 type Str = GetReturnType<(x: string) => string>;
-//   ^?
 
 type Bools = GetReturnType<(a: boolean, b: boolean) => boolean[]>;
-//   ^?
 ```
 
 当从具有多个调用签名的类型（例如重载函数的类型）推断时，推断是从 _最后一个_ 签名进行的（大概这是最宽松的包罗所有情况的分支）。无法基于参数类型列表执行重载解析。
@@ -210,7 +197,6 @@ declare function stringOrNum(x: number): string;
 declare function stringOrNum(x: string | number): string | number;
 
 type T1 = ReturnType<typeof stringOrNum>;
-//   ^?
 ```
 
 ## 分配条件类型
@@ -228,7 +214,6 @@ type ToArray<Type> = Type extends any ? Type[] : never;
 type ToArray<Type> = Type extends any ? Type[] : never;
 
 type StrArrOrNumArr = ToArray<string | number>;
-//   ^?
 ```
 
 这里发生的是 `ToArray` 分配在：
@@ -264,5 +249,4 @@ type ToArrayNonDist<Type> = [Type] extends [any] ? Type[] : never;
 
 // 'ArrOfStrOrNum' 不再是联合类型。
 type ArrOfStrOrNum = ToArrayNonDist<string | number>;
-//   ^?
 ```

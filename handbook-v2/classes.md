@@ -339,7 +339,6 @@ class NameChecker implements Checkable {
   check(s) {
     // Notice no error here
     return s.toLowerCase() === "ok";
-    //         ^?
   }
 }
 ```
@@ -670,7 +669,7 @@ console.log(d.m); // OK
 TypeScript 不允许在类层次结构中访问兄弟类的 `protected` 成员：
 
 ```ts twoslash
-// @errors: 2446
+// @errors: 2445
 class Base {
   protected x: number = 1;
 }
@@ -944,7 +943,6 @@ class Box<Type> {
 }
 
 const b = new Box("hello!");
-//    ^?
 ```
 
 类可以像接口一样使用泛型约束和默认值。
@@ -1086,7 +1084,6 @@ console.log(g());
 class Box {
   contents: string = "";
   set(value: string) {
-//  ^?
     this.contents = value;
     return this;
   }
@@ -1113,7 +1110,6 @@ class ClearableBox extends Box {
 
 const a = new ClearableBox();
 const b = a.set("hello");
-//    ^?
 ```
 
 你也可以在参数类型注解中使用 `this`：
@@ -1186,13 +1182,10 @@ const fso: FileSystemObject = new FileRep("foo/bar.txt", "foo");
 
 if (fso.isFile()) {
   fso.content;
-// ^?
 } else if (fso.isDirectory()) {
   fso.children;
-// ^?
 } else if (fso.isNetworked()) {
   fso.host;
-// ^?
 }
 ```
 
@@ -1211,11 +1204,9 @@ const box = new Box<string>();
 box.value = "Gameboy";
 
 box.value;
-//  ^?
 
 if (box.hasValue()) {
   box.value;
-  //  ^?
 }
 ```
 
@@ -1238,7 +1229,6 @@ class Params {
 }
 const a = new Params(1, 2, 3);
 console.log(a.x);
-//            ^?
 console.log(a.z);
 ```
 
@@ -1262,12 +1252,11 @@ const someClass = class<Type> {
 };
 
 const m = new someClass("Hello, world");
-//    ^?
 ```
 
 ## 构造函数签名
 
-JavaScript 类使用 `new` 运算符实例化。给定类本身的类型，[InstanceType](/docs/handbook/utility-types.html#instancetypetype) 工具类型模拟此操作。
+JavaScript 类使用 `new` 运算符实例化。给定类本身的类型，[InstanceType](/reference/utility-types#instancetypetype) 工具类型模拟此操作。
 
 ```ts twoslash
 class Point {

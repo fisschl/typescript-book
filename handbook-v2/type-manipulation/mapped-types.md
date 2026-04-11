@@ -40,7 +40,6 @@ type Features = {
 };
 
 type FeatureOptions = OptionsFlags<Features>;
-//   ^?
 ```
 
 ### 映射修饰符
@@ -61,7 +60,6 @@ type LockedAccount = {
 };
 
 type UnlockedAccount = CreateMutable<LockedAccount>;
-//   ^?
 ```
 
 ```ts twoslash
@@ -77,7 +75,6 @@ type MaybeUser = {
 };
 
 type User = Concrete<MaybeUser>;
-//   ^?
 ```
 
 ## 通过 `as` 进行键重映射
@@ -104,7 +101,6 @@ interface Person {
 }
 
 type LazyPerson = Getters<Person>;
-//   ^?
 ```
 
 你可以通过条件类型生成 `never` 来过滤掉键：
@@ -121,7 +117,6 @@ interface Circle {
 }
 
 type KindlessCircle = RemoveKindField<Circle>;
-//   ^?
 ```
 
 你可以映射任意的联合类型，而不仅仅是 `string | number | symbol` 的联合，而是任何类型的联合：
@@ -135,7 +130,6 @@ type SquareEvent = { kind: "square", x: number, y: number };
 type CircleEvent = { kind: "circle", radius: number };
 
 type Config = EventConfig<SquareEvent | CircleEvent>
-//   ^?
 ```
 
 ### 进一步探索
@@ -153,5 +147,4 @@ type DBFields = {
 };
 
 type ObjectsNeedingGDPRDeletion = ExtractPII<DBFields>;
-//   ^?
 ```

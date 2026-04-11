@@ -381,10 +381,8 @@ const ODirection = {
 } as const;
 
 EDirection.Up;
-//         ^?
 
 ODirection.Up;
-//         ^?
 
 // Using the enum as a parameter
 function walk(dir: EDirection) {}

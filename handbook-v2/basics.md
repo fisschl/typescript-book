@@ -330,7 +330,6 @@ greet("Maddison", new Date());
 
 ```ts twoslash
 let msg = "hello there!";
-//  ^?
 ```
 
 即使我们没有告诉 TypeScript `msg` 的类型是 `string`，它也能推断出来。
