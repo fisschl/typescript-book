@@ -89,19 +89,47 @@ When testing pages in the browser:
 
 - `.vitepress/config.ts` - VitePress config with Twoslash transformer and sidebar
 - `.vitepress/theme/index.ts` - Theme config for Twoslash client-side components
+- `.vitepress/cache/` - Browser test screenshots (save screenshots here, NOT in project root)
 - `get-started/` - Markdown documentation files
+- `handbook-v2/` - Handbook v2 translated pages (root-level pages + subdirectories like `type-manipulation/`)
 - `TypeScript-Website/` - Git submodule with official TypeScript docs source
+  - Source files: `TypeScript-Website/packages/documentation/copy/en/`
 
 ## Sidebar Navigation
 
 **Source of truth**: `TypeScript-Website/packages/documentation/scripts/generateDocsNavigationPerLanguage.js`
 
-The sidebar order MUST match the original website exactly. Current "Get Started" order:
-1. TS for the New Programmer → `ts-for-the-new-programmer`
-2. TS for JS Programmers → `ts-for-js-programmers`
-3. TS for OOPers → (pending)
-4. TS for Functional Programmers → `ts-for-functional-programmers`
-5. TypeScript Tooling in 5 minutes → (pending)
+The sidebar order MUST match the original website exactly.
+
+### Handbook v2 Structure
+
+The Handbook v2 pages follow this structure in the source:
+```
+handbook-v2/
+├── The Handbook.md
+├── Basics.md
+├── Everyday Types.md
+├── Narrowing.md
+├── More on Functions.md
+├── Object Types.md
+├── Type Manipulation/
+│   ├── _Creating Types from Types.md
+│   ├── Generics.md
+│   ├── Keyof Type Operator.md
+│   ├── Typeof Type Operator.md
+│   ├── Indexed Access Types.md
+│   ├── Conditional Types.md
+│   ├── Mapped Types.md
+│   └── Template Literal Types.md
+├── Classes.md
+└── Modules.md
+```
+
+Translated files go to `handbook-v2/` with matching structure:
+- Root-level pages: `handbook-v2/basics.md`
+- Subdirectory pages: `handbook-v2/type-manipulation/keyof-type-operator.md`
+
+**Important**: The VitePress sidebar config in `.vitepress/config.ts` must be updated to include new pages. The sidebar structure should mirror the source navigation exactly.
 
 ## Twoslash Code Blocks
 
@@ -144,10 +172,27 @@ All translation work follows this 4-step process:
 - Check image paths use relative format
 
 ### 4. Browser Test
-- Update `.vitepress/config.ts` sidebar
+- Update `.vitepress/config.ts` sidebar if this is a new page
 - Verify page loads without errors
 - Check code block rendering (especially Twoslash)
-- Save screenshots to `.vitepress/cache/`
+- Save screenshots to `.vitepress/cache/` (NOT in project root)
+
+## Screenshot Management
+
+**NEVER save screenshots in the project root directory.** Always save to `.vitepress/cache/`:
+
+```bash
+# Correct
+cp page-name.png .vitepress/cache/page-name.png
+
+# Then delete from root if accidentally created there
+rm page-name.png
+```
+
+After browser testing, clean up any screenshots that ended up in the root:
+```bash
+git status  # Check for unexpected .png files in root
+```
 
 ## File Naming
 
@@ -168,3 +213,14 @@ This ensures Markdown engines render formatting correctly.
 Place images in `assets/` directory (not `public/`) to enable VitePress processing. Use relative paths:
 - Location: `assets/images/docs/greet_person.png`
 - Reference: `![Alt text](../assets/images/docs/greet_person.png)`
+
+## tsconfig Link Format
+
+The tsconfig reference pages are NOT translated. Links to tsconfig options must use full external URLs:
+
+```markdown
+Source: [`noEmitOnError`](https://www.typescriptlang.org/tsconfig#noEmitOnError)
+Keep as:  [`noEmitOnError`](https://www.typescriptlang.org/tsconfig#noEmitOnError)
+```
+
+Do NOT convert these to short paths like `/tsconfig#xxx` since those pages don't exist in the translated site.
