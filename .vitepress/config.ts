@@ -121,26 +121,20 @@ export default defineConfig({
         {
           text: "参考",
           items: [
-            {
-              text: "工具类型",
-              link: "/reference/utility-types",
-            },
-            {
-              text: "装饰器",
-              link: "/reference/decorators",
-            },
-            {
-              text: "声明合并",
-              link: "/reference/declaration-merging",
-            },
-            {
-              text: "枚举",
-              link: "/reference/enums",
-            },
-            {
-              text: "三斜杠指令",
-              link: "/reference/triple-slash-directives",
-            },
+            { text: "工具类型", link: "/reference/utility-types" },
+            { text: "装饰器", link: "/reference/decorators" },
+            { text: "声明合并", link: "/reference/declaration-merging" },
+            { text: "枚举", link: "/reference/enums" },
+            { text: "迭代器和生成器", link: "/reference/iterators-and-generators" },
+            { text: "JSX", link: "/reference/jsx" },
+            { text: "Mixins", link: "/reference/mixins" },
+            { text: "命名空间", link: "/reference/namespaces" },
+            { text: "命名空间和模块", link: "/reference/namespaces-and-modules" },
+            { text: "符号", link: "/reference/symbols" },
+            { text: "三斜杠指令", link: "/reference/triple-slash-directives" },
+            { text: "类型兼容性", link: "/reference/type-compatibility" },
+            { text: "类型推断", link: "/reference/type-inference" },
+            { text: "变量声明", link: "/reference/variable-declarations" },
           ],
         },
       ],
