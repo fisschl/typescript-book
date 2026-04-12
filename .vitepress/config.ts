@@ -125,11 +125,17 @@ export default defineConfig({
             { text: "装饰器", link: "/reference/decorators" },
             { text: "声明合并", link: "/reference/declaration-merging" },
             { text: "枚举", link: "/reference/enums" },
-            { text: "迭代器和生成器", link: "/reference/iterators-and-generators" },
+            {
+              text: "迭代器和生成器",
+              link: "/reference/iterators-and-generators",
+            },
             { text: "JSX", link: "/reference/jsx" },
-            { text: "Mixins", link: "/reference/mixins" },
+            { text: "混入", link: "/reference/mixins" },
             { text: "命名空间", link: "/reference/namespaces" },
-            { text: "命名空间和模块", link: "/reference/namespaces-and-modules" },
+            {
+              text: "命名空间和模块",
+              link: "/reference/namespaces-and-modules",
+            },
             { text: "符号", link: "/reference/symbols" },
             { text: "三斜杠指令", link: "/reference/triple-slash-directives" },
             { text: "类型兼容性", link: "/reference/type-compatibility" },
@@ -145,14 +151,20 @@ export default defineConfig({
             {
               text: "指南",
               items: [
-                { text: "选择编译器选项", link: "/modules-reference/guides/choosing-compiler-options" },
+                {
+                  text: "选择编译器选项",
+                  link: "/modules-reference/guides/choosing-compiler-options",
+                },
               ],
             },
             { text: "参考", link: "/modules-reference/reference" },
             {
               text: "附录",
               items: [
-                { text: "ESM/CJS 互操作性", link: "/modules-reference/appendices/esm-cjs-interop" },
+                {
+                  text: "ESM/CJS 互操作性",
+                  link: "/modules-reference/appendices/esm-cjs-interop",
+                },
               ],
             },
           ],
