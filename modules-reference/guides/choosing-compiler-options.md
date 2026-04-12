@@ -184,13 +184,13 @@ import {} from "lodash";
 
   仅在 `strictNullChecks` 下才是错误。另一方面，编写仅在 `strict` _禁用_ 时报错的代码非常困难，因此强烈建议类库使用 `strict` 编译。
 
-- **`verbatimModuleSyntax: true`**。此设置可防止一些可能导致类库消费者问题的模块相关陷阱。首先，它防止编写任何可能根据用户的 `esModuleInterop` 或 `allowSyntheticDefaultImports` 值被模糊解释的导入语句。以前，通常建议类库在不使用 `esModuleInterop` 的情况下编译，因为它在类库中的使用可能迫使用户也采用它。然而，也可以编写仅在 _没有_ `esModuleInterop` 时工作的导入，因此该设置的任何值都不能保证类库的可移植性。`verbatimModuleSyntax` 确实提供了这样的保证。[^1] 其次，它防止在将被生成为 CommonJS 的模块中使用 `export default`，这可能要求打包工具用户和 Node.js ESM 用户以不同方式消费模块。更多详情请参见关于 [ESM/CJS 互操作](/docs/handbook/modules/appendices/esm-cjs-interop.html#library-code-needs-special-considerations) 的附录。
+- **`verbatimModuleSyntax: true`**。此设置可防止一些可能导致类库消费者问题的模块相关陷阱。首先，它防止编写任何可能根据用户的 `esModuleInterop` 或 `allowSyntheticDefaultImports` 值被模糊解释的导入语句。以前，通常建议类库在不使用 `esModuleInterop` 的情况下编译，因为它在类库中的使用可能迫使用户也采用它。然而，也可以编写仅在 _没有_ `esModuleInterop` 时工作的导入，因此该设置的任何值都不能保证类库的可移植性。`verbatimModuleSyntax` 确实提供了这样的保证。[^1] 其次，它防止在将被生成为 CommonJS 的模块中使用 `export default`，这可能要求打包工具用户和 Node.js ESM 用户以不同方式消费模块。更多详情请参见关于 [ESM/CJS 互操作](https://www.typescriptlang.org/docs/handbook/modules/appendices/esm-cjs-interop.html#library-code-needs-special-considerations) 的附录。
 
 - **`declaration: true`** 会随输出 JavaScript 一起生成类型声明文件。类库的消费者需要这些文件来获取任何类型信息。
 
 - **`sourceMap: true`** 和 **`declarationMap: true`** 分别为输出 JavaScript 和类型声明文件生成源映射。这些只有在类库同时提供源代码（`.ts` 文件）时才有用。通过提供源映射和源文件，类库的消费者将能够更轻松地调试类库代码。通过提供声明映射和源文件，消费者在运行 "转到定义" 时将能够看到原始的 TypeScript 源代码。这两者代表了开发者体验和类库大小之间的权衡，因此是否包含它们由你决定。
 
-- **`rootDir: "src"`** 和 **`outDir: "dist"`**。使用单独的输出目录总是一个好主意，但对于发布其输入文件的类库来说，这是 _必需的_。否则，[扩展名替换](/docs/handbook/modules/reference.html#file-extension-substitution) 将导致类库的消费者加载类库的 `.ts` 文件而不是 `.d.ts` 文件，从而导致类型错误和性能问题。
+- **`rootDir: "src"`** 和 **`outDir: "dist"`**。使用单独的输出目录总是一个好主意，但对于发布其输入文件的类库来说，这是 _必需的_。否则，[扩展名替换](https://www.typescriptlang.org/docs/handbook/modules/reference.html#file-extension-substitution) 将导致类库的消费者加载类库的 `.ts` 文件而不是 `.d.ts` 文件，从而导致类型错误和性能问题。
 
 ### 打包类库的注意事项
 
@@ -198,7 +198,7 @@ import {} from "lodash";
 
 1. TypeScript 无法模拟当某些文件被打包而某些文件被外部化时的模块解析。使用打包工具打包类库时，通常将第一方类库源代码打包到单个文件中，但将外部依赖的导入保留为打包输出中的真实导入。这实质上意味着模块解析在打包工具和最终用户的环境之间分割。要在 TypeScript 中模拟这一点，你需要使用 `"moduleResolution": "bundler"` 处理打包的导入，使用 `"moduleResolution": "nodenext"` 处理外部化的导入（或使用多个选项来检查所有内容是否能在各种最终用户环境中工作）。但 TypeScript 无法配置为在同一编译中使用两种不同的模块解析设置。因此，使用 `"moduleResolution": "bundler"` 可能允许导入在打包工具中工作但在 Node.js 中不安全的外部化依赖。另一方面，使用 `"moduleResolution": "nodenext"` 可能对打包的导入施加过于严格的要求。
 
-2. 你必须确保你的声明文件也被打包。回想一下[声明文件的第一条规则](/docs/handbook/modules/theory.html#the-role-of-declaration-files)：每个声明文件恰好代表一个 JavaScript 文件。如果你使用 `"moduleResolution": "bundler"` 并使用打包工具生成 ESM 包，同时使用 `tsc` 生成许多单独的声明文件，你的声明文件可能会在 `"module": "nodenext"` 下消费时导致错误。例如，如下输入文件：
+2. 你必须确保你的声明文件也被打包。回想一下[声明文件的第一条规则](https://www.typescriptlang.org/docs/handbook/modules/theory.html#the-role-of-declaration-files)：每个声明文件恰好代表一个 JavaScript 文件。如果你使用 `"moduleResolution": "bundler"` 并使用打包工具生成 ESM 包，同时使用 `tsc` 生成许多单独的声明文件，你的声明文件可能会在 `"module": "nodenext"` 下消费时导致错误。例如，如下输入文件：
 
    ```ts
    import { Component } from "./extensionless-relative-import";
