@@ -6,7 +6,7 @@ title: 模块 - 选择编译器选项
 
 单个 tsconfig.json 只能表示单一环境，包括可用的全局变量和模块行为。如果你的应用程序包含服务器代码、DOM 代码、Web Worker 代码、测试代码以及需要被所有这些代码共享的代码，那么每个环境都应该有自己的 tsconfig.json，并通过 [项目引用](https://www.typescriptlang.org/docs/handbook/project-references.html#handbook-content) 进行连接。然后，针对每个 tsconfig.json 使用本指南。对于应用程序内部的类库项目，特别是需要在多个运行时环境中运行的项目，请使用 "[我在编写类库](#im-writing-a-library)" 部分。
 
-### 我在使用打包工具
+### 我在使用打包工具 {#im-using-a-bundler}
 
 除了采用以下设置外，目前还建议 _不要_ 在打包工具项目中设置 `{ "type": "module" }` 或使用 `.mts` 文件。[某些打包工具](https://andrewbranch.github.io/interop-test/#synthesizing-default-exports-for-cjs-modules) 在这些情况下会采用不同的 ESM/CJS 互操作行为，而 TypeScript 目前无法通过 `"moduleResolution": "bundler"` 来分析这些行为。更多信息请参见 [issue #54102](https://github.com/microsoft/TypeScript/issues/54102)。
 
@@ -35,7 +35,7 @@ title: 模块 - 选择编译器选项
 }
 ```
 
-### 我在编译并在 Node.js 中运行输出
+### 我在编译并在 Node.js 中运行输出 {#im-compiling-and-running-the-outputs-in-node}
 
 请记住，如果你打算生成 ES 模块，请设置 `"type": "module"` 或使用 `.mts` 文件。
 
@@ -122,7 +122,7 @@ import {} from "lodash";
 // TypeScript: ./node_modules/@types/lodash/index.d.ts
 ```
 
-## 我在编写类库
+## 我在编写类库 {#im-writing-a-library}
 
 <!-- TODO: I might move all this to a guide/appendix on library publishing and link -->
 
