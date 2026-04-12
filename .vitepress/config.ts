@@ -137,6 +137,26 @@ export default defineConfig({
             { text: "变量声明", link: "/reference/variable-declarations" },
           ],
         },
+        {
+          text: "模块参考",
+          items: [
+            { text: "介绍", link: "/modules-reference/introduction" },
+            { text: "理论", link: "/modules-reference/theory" },
+            {
+              text: "指南",
+              items: [
+                { text: "选择编译器选项", link: "/modules-reference/guides/choosing-compiler-options" },
+              ],
+            },
+            { text: "参考", link: "/modules-reference/reference" },
+            {
+              text: "附录",
+              items: [
+                { text: "ESM/CJS 互操作性", link: "/modules-reference/appendices/esm-cjs-interop" },
+              ],
+            },
+          ],
+        },
       ],
     },
   },
