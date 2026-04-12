@@ -50,7 +50,7 @@ let className = c[getClassNameSymbol](); // "C"
 
 ## `unique symbol`
 
-为了支持将 symbols 视为唯一字面量，可以使用特殊的类型 `unique symbol`。`unique symbol` 是 `symbol` 的子类型，只能从调用 `Symbol()` 或 `Symbol.for()` 产生，或来自显式类型注解。这种类型只允许在 `const` 声明和 `readonly static` 属性上使用，并且为了引用特定的唯一 symbol，你必须使用 `typeof` 运算符。对每个唯一 symbol 的引用都意味着一个完全唯一的身份，该身份与给定的声明相关联。
+为了支持将 symbols 视为唯一字面量，可以使用特殊的类型 `unique symbol` 。`unique symbol` 是 `symbol` 的子类型，只能从调用 `Symbol()` 或 `Symbol.for()` 产生，或来自显式类型注解。这种类型只允许在 `const` 声明和 `readonly static` 属性上使用，并且为了引用特定的唯一 symbol，你必须使用 `typeof` 运算符。对每个唯一 symbol 的引用都意味着一个完全唯一的身份，该身份与给定的声明相关联。
 
 ```ts twoslash
 // @errors: 1332
