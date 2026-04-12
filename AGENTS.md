@@ -37,6 +37,9 @@ When testing changes in the browser:
 
 - **Node.js 25 localStorage warning**: You may see `Warning: --localstorage-file was provided without a valid path`. This is a harmless warning from Node.js 25's experimental localStorage feature. It does not affect the dev server.
 - **VitePress cache issues**: If a page shows incorrect content (e.g., basics page showing handbook content), clear the cache with `rm -rf .vitepress/cache` and restart the dev server.
+- **Code comment translation**: Translators frequently convert English comments in code blocks to Chinese. Always verify code block comments match the source file exactly.
+- **`// ^?` type query markers**: Source files contain `// ^?` lines for inline type display. These must be removed during translation.
+- **@errors code mismatch**: TypeScript 6.0.2 may produce different error codes than earlier versions. Always verify `@errors` annotations by running `pnpm run build`.
 
 ## Link Conventions
 
@@ -70,6 +73,20 @@ All external links MUST use full `https://` URLs:
 If a source file links to a page that hasn't been translated yet, either:
 - Remove the link and keep just the text
 - Link to the English version with full URL
+
+### Common Link Mistakes
+
+**Wrong tsconfig path**:
+❌ Wrong: `[strictNullChecks](/tsconfig#strictNullChecks)`
+✅ Correct: `[strictNullChecks](https://www.typescriptlang.org/tsconfig#strictNullChecks)`
+
+**Wrong handbook path**:
+❌ Wrong: `[Classes](/docs/handbook/2/classes)`
+✅ Correct: `[类](/handbook-v2/classes)`
+
+**Linking to untranslated pages**:
+❌ Wrong: `[Mixins](/docs/handbook/mixins)`
+✅ Correct: `[Mixins](https://www.typescriptlang.org/docs/handbook/mixins.html)`
 
 ## Browser Testing
 
@@ -144,6 +161,26 @@ const user: User = { username: "Hayes" };
 
 **Known Issue**: Incomplete syntax (e.g., `let a = (4`) with `@errors` causes crash: "Cannot read properties of undefined (reading 'children')". For such cases, use plain `ts` block with inline `// Error:` comment instead.
 
+### Code Comments Must Stay in English
+
+**CRITICAL**: All comments inside code blocks must remain in their original English. Do NOT translate code comments. This includes single-line comments (`// ...`), multi-line comments (`/* ... */`), and JSDoc comments.
+
+### Remove `// ^?` Type Query Lines
+
+Do NOT include `// ^?` (Twoslash type query) lines in translated code blocks. These markers create always-visible type annotations that clutter the display. Users can hover over any identifier to see its type instead. When copying code from source files, systematically remove all `// ^?` lines.
+
+### @errors Compatibility with TypeScript 6.0
+
+The project uses TypeScript 6.0.2, which has different error codes from earlier versions. After translation, verify that `@errors` annotations match actual compiler output. Run `pnpm run build` to confirm.
+
+### External Library Imports in Twoslash
+
+When a code block requires imports from libraries not available in Twoslash (e.g., `import "reflect-metadata"`), use plain `ts` instead of `ts twoslash`.
+
+### UMD Module Blocks
+
+When using `// @module: umd` in Twoslash blocks, add `// @moduleResolution: node` for TypeScript 6.0.2 compatibility.
+
 ## Translation Workflow
 
 All translation work follows this 4-step process:
@@ -168,7 +205,11 @@ All translation work follows this 4-step process:
 ### 3. Review
 - Check for formatting issues (italics/bold spacing)
 - Verify technical term translations
-- Ensure code blocks match source
+- Ensure code blocks match source:
+  - **Verify all comments remain in English** (most common translation error)
+  - Remove any `// ^?` type query lines
+  - Verify `@errors` codes match TypeScript 6.0.2 output
+  - For blocks with external imports (e.g., `reflect-metadata`), use plain `ts` instead of `ts twoslash`
 - Check image paths use relative format
 
 ### 4. Browser Test

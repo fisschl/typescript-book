@@ -137,6 +137,10 @@ export default defineConfig({
               text: "枚举",
               link: "/reference/enums",
             },
+            {
+              text: "三斜杠指令",
+              link: "/reference/triple-slash-directives",
+            },
           ],
         },
       ],
