@@ -136,7 +136,7 @@ export default defineConfig({
               text: "命名空间和模块",
               link: "/reference/namespaces-and-modules",
             },
-            { text: "符号", link: "/reference/symbols" },
+            { text: "Symbols", link: "/reference/symbols" },
             { text: "三斜杠指令", link: "/reference/triple-slash-directives" },
             { text: "类型兼容性", link: "/reference/type-compatibility" },
             { text: "类型推断", link: "/reference/type-inference" },
