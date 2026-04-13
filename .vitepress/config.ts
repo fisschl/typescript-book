@@ -256,6 +256,27 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: "JavaScript",
+          items: [
+            {
+              text: "使用 TypeScript 的 JS 项目",
+              link: "/javascript/intro-to-js-ts",
+            },
+            {
+              text: "类型检查 JavaScript 文件",
+              link: "/javascript/type-checking-javascript-files",
+            },
+            {
+              text: "JSDoc 参考",
+              link: "/javascript/jsdoc-reference",
+            },
+            {
+              text: "从 JS 文件创建 .d.ts 文件",
+              link: "/javascript/creating-dts-files-from-js",
+            },
+          ],
+        },
       ],
     },
   },
