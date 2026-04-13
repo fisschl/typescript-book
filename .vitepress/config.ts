@@ -194,6 +194,68 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: "声明文件",
+          items: [
+            {
+              text: "介绍",
+              link: "/declaration-files/introduction",
+            },
+            {
+              text: "声明参考",
+              link: "/declaration-files/by-example",
+            },
+            {
+              text: "库结构",
+              link: "/declaration-files/library-structures",
+            },
+            {
+              text: ".d.ts 模板",
+              items: [
+                {
+                  text: "模块：.d.ts",
+                  link: "/declaration-files/templates/module-d-ts",
+                },
+                {
+                  text: "模块：插件",
+                  link: "/declaration-files/templates/module-plugin-d-ts",
+                },
+                {
+                  text: "模块：类",
+                  link: "/declaration-files/templates/module-class-d-ts",
+                },
+                {
+                  text: "模块：函数",
+                  link: "/declaration-files/templates/module-function-d-ts",
+                },
+                {
+                  text: "全局 .d.ts",
+                  link: "/declaration-files/templates/global-d-ts",
+                },
+                {
+                  text: "全局修改模块",
+                  link: "/declaration-files/templates/global-modifying-module-d-ts",
+                },
+              ],
+            },
+            {
+              text: "注意事项",
+              link: "/declaration-files/dos-and-donts",
+            },
+            {
+              text: "深入",
+              link: "/declaration-files/deep-dive",
+            },
+            {
+              text: "发布",
+              link: "/declaration-files/publishing",
+            },
+            {
+              text: "使用",
+              link: "/declaration-files/consumption",
+            },
+          ],
+        },
       ],
     },
   },
