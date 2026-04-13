@@ -169,6 +169,31 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: "教程",
+          items: [
+            {
+              text: "ASP.NET Core",
+              link: "/tutorials/asp-net-core",
+            },
+            {
+              text: "Gulp",
+              link: "/tutorials/gulp",
+            },
+            {
+              text: "DOM 操作",
+              link: "/tutorials/dom-manipulation",
+            },
+            {
+              text: "从 JavaScript 迁移",
+              link: "/tutorials/migrating-from-javascript",
+            },
+            {
+              text: "在 TypeScript 中使用 Babel",
+              link: "/tutorials/babel-with-typescript",
+            },
+          ],
+        },
       ],
     },
   },
